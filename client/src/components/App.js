@@ -11,9 +11,9 @@ const App = () => {
   return (
     <Router history={history}>
       <Menu>
-        <Menu.Item>Index</Menu.Item>
-        <Menu.Item>Bio</Menu.Item>
-        <Menu.Item>Projects</Menu.Item>
+        <Menu.Item to={INDEX_PAGE}>Index</Menu.Item>
+        <Menu.Item to={BIO_PAGE}>Bio</Menu.Item>
+        <Menu.Item to={PROJECTS_PAGE}>Projects</Menu.Item>
       </Menu>
       <Route exact path={INDEX_PAGE}>
         <IndexPage />

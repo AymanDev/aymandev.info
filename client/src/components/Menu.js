@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import history from "../history";
+import { useLocation } from "react-router-dom";
 
 const MenuWrapper = styled.div`
   position: fixed;
@@ -24,7 +25,7 @@ const Menu = props => {
   return <MenuWrapper {...props}>{props.children}</MenuWrapper>;
 };
 
-const MenuItemWrapper = styled(Link)`
+const MenuItemWrapper = styled.a`
   height: 100%;
   font-size: 14px;
   color: white;
@@ -35,11 +36,22 @@ const MenuItemWrapper = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background: rgba(255, 255, 255, 0.25);
+  background: ${props =>
+    props.active ? "rgba(255, 255, 255, 0.5)" : "rgba(255, 255, 255, 0.25)"};
 `;
-Menu.Item = props => {
-  return <MenuItemWrapper {...props}>{props.children}</MenuItemWrapper>;
+const Item = props => {
+  const { pathname } = useLocation();
+  return (
+    <MenuItemWrapper
+      onClick={() => history.push(props.to)}
+      active={props.to === pathname}
+      {...props}
+    >
+      {props.children}
+    </MenuItemWrapper>
+  );
 };
+
+Menu.Item = Item;
 
 export default Menu;
