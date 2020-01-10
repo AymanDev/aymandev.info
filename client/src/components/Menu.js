@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 
 const MenuWrapper = styled.div`
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
 
   display: flex;
@@ -14,7 +16,7 @@ const MenuWrapper = styled.div`
 
   z-index: 2;
 
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.25);
 
   & > * {
     margin-right: 5px;

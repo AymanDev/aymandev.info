@@ -3,6 +3,7 @@ import { EasterEgg, EasterEggWrapper } from "../elements/EasterEgg";
 import { HighlightedText } from "../elements/HighlightedText";
 import Link from "../elements/Link";
 import styled from "styled-components";
+import { BIO_PAGE } from "../routes";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -16,11 +17,16 @@ const Wrapper = styled.div`
 
 const Video = styled.video`
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  //width: 100%;
+  //height: 100%;
   z-index: 1;
   filter: blur(10px);
   background: black;
@@ -78,7 +84,7 @@ const IndexPage = () => (
         I'm Web and Game Developer!
       </HighlightedText>
       <HighlightedText size={18} delay={3}>
-        <Link href="#">Click here for info about me</Link>
+        <Link href={BIO_PAGE}>Click here for info about me</Link>
       </HighlightedText>
 
       <Footer>
