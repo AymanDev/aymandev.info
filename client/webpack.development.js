@@ -1,6 +1,7 @@
-const MiniCssExtractPlugin = require('mini-css-extract');
+const merge = require('webpack-merge');
+const common = require('./webpack.common');
 
-module.exports = {
+module.exports = merge(common, {
     mode: 'development',
     devtool: 'inline-source-map',
     devServer: {
@@ -8,21 +9,4 @@ module.exports = {
         headers: { 'Access-Control-Allow-Origin': '*' },
         historyApiFallback: true,
     },
-    plugins: [new MiniCssExtractPlugin()],
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            hmr: true,
-                        },
-                    },
-                    'css-loader',
-                ],
-            },
-        ],
-    },
-};
+});

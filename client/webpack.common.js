@@ -6,6 +6,9 @@ module.exports = {
     resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx'] },
     plugins: [
         new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'public/index.html',
+            chunksSortMode: 'auto',
             minify: {
                 removeComments: true,
                 collapseWhitespace: true,
