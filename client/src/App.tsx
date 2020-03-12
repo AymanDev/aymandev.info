@@ -1,6 +1,13 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import Title from './elements/Title';
+import { Route, Switch, Router } from 'react-router-dom';
+import IndexPage from './containers/IndexPage';
+import Routes from './routes';
+import BioPage from './containers/BioPage';
+import ProjectsPage from './containers/ProjectsPage';
+import NotFoundPage from './containers/NotFoundPage';
+import History from './history';
+import Button from './elements/Button';
 
 const GlobalStyle = createGlobalStyle`
 html, body{
@@ -25,14 +32,25 @@ const App = ({}) => {
     return (
         <Wrapper>
             <GlobalStyle />
-            <Title>Hello</Title>
-            <Title delay={1.25}>It's me</Title>
-            <Title delay={2} fontSize={60}>
-                AymanDev
-            </Title>
-            <Title delay={3.25} fontSize={20}>
-                This is my temporary personal website
-            </Title>
+            <Router history={History.history}>
+                <Switch>
+                    <Route exact path={Routes.INDEX_PATH}>
+                        <IndexPage />
+                    </Route>
+                    <Route path={Routes.INDEX_PATH}>
+                        <Button onClick={History.back()}>{'< Back'}</Button>
+                        <Route exact path={Routes.BIO_PATH}>
+                            <BioPage />
+                        </Route>
+                        <Route exact path={Routes.PROJECTS_PATH}>
+                            <ProjectsPage />
+                        </Route>
+                        <Route>
+                            <NotFoundPage />
+                        </Route>
+                    </Route>
+                </Switch>
+            </Router>
         </Wrapper>
     );
 };
