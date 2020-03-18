@@ -8,6 +8,8 @@ import ProjectsPage from './containers/ProjectsPage';
 import NotFoundPage from './containers/NotFoundPage';
 import History from './history';
 import Button from './elements/Button';
+import { useQuery } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 const GlobalStyle = createGlobalStyle`
 html, body{
@@ -28,8 +30,19 @@ const Wrapper = styled.div`
     align-items: center;
 `;
 
+const PROJECTS = gql`
+    {
+        getProjects {
+            id
+            name
+            description
+        }
+    }
+`;
 
-const App = ({}) => {
+const App = () => {
+    const response = useQuery(PROJECTS);
+    console.log(response);
     return (
         <Wrapper>
             <GlobalStyle />
